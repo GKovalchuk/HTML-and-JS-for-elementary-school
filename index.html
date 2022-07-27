@@ -1,0 +1,138 @@
+﻿<html>
+
+<body style="text-align:center; background-color:rgb(182, 199, 199)">
+	<img src="cat.png">
+	<h1>Привет, я котик-акинатор</h1>
+	<button onclick="akinator()"
+		style="background: rgb(0, 79, 105); width: 400px; height: 100px; font-size: 40px; border: 0; color:cornsilk; font-weight: bold; border-radius: 15px;">
+		Поиграй со мной
+	</button>
+	<button onclick="murr()"
+		style="background: rgb(105, 0, 0); width: 400px; height: 100px; font-size: 40px; border: 0; color:cornsilk; font-weight: bold; border-radius: 15px;">
+		Покормить
+	</button>
+	<div style="width: 1920px; height: 50px;"></div>
+	<img src="ball.png" alt="" style="width: 500px; height: auto;">
+	<div style="width: 1920px; height: 20px;"></div>
+	<h1>Шар судьбы</h1>
+	<button onclick=oracle()
+		style="background: rgb(105, 0, 0); width: 400px; height: 100px; font-size: 40px; border: 0; color:cornsilk; font-weight: bold; border-radius: 15px;">Задай
+		вопрос</button>
+	<div style="width: 1920px; height: 50px;"></div>
+	<img src="quiz.png" alt="" style="width: 500px; height: auto;">
+	<div style="width: 1920px; height: 20px;"></div>
+	<button onclick=quiz()
+		style="background: rgb(105, 0, 0); width: 400px; height: 100px; font-size: 40px; border: 0; color:cornsilk; font-weight: bold; border-radius: 15px;">Начать
+		Игру</button>
+	<div style="width: 1920px; height: 50px;"></div>
+	<img src="gallows.jpg">
+	<div style="width: 1920px; height: 20px;"></div>
+	<button onclick=gallows()
+		style="background: rgb(105, 0, 0); width: 400px; height: 100px; font-size: 40px; border: 0; color:cornsilk; font-weight: bold; border-radius: 15px;">Начать
+		Игру</button>
+	<script>
+		function quiz() {
+			var questions = [
+				{
+					question: 'Сколько дней в году? \n (a) 360 \n (b) 370  \n (c) 365 ',
+					answer: 'c'
+				},
+				{
+					question: 'В каком году был основан Санкт-Петербург? \n (a) 1113 \n (b) 1703  \n (c) 1804 ',
+					answer: 'b'
+				},
+				{
+					question: 'Как звали последнего императора в России? \n (a) Николай \n (b) Александр  \n (c) Иван ',
+					answer: 'a'
+				},
+
+			];
+			let point = 0;
+			for (let i = 0; i != questions.length; i++) {
+				let userAnswer = prompt(questions[i].question);
+				if (userAnswer == questions[i].answer) {
+					alert("Верно! Следующий вопрос!");
+					point++;
+				} else {
+					alert("Неверно! Следующий вопрос!");
+				}
+			}
+			alert("Вы набрали " + point + " очков!");
+		}
+		function akinator() {
+			alert("Привет! Я котик-акинатор! Загадай персонажа!");
+			if (confirm("Твой персонаж круглый?")) {
+				if (confirm("Это колобок?")) {
+					alert("Ура! Я угадал!");
+				} else {
+					alert("Я проиграл :(");
+				}
+			} else if (confirm("Твой персонаж хитрый?")) {
+				if (confirm("Это лиса?")) {
+					alert("Ура! Я угадал!");
+				} else {
+					alert("Я проиграл :(");
+				}
+			} else if (confirm("Твой персонаж трусливый?")) {
+				if (confirm("Это заяц?")) {
+					alert("Ура! Я угадал!");
+				} else {
+					alert("Я проиграл :(");
+				}
+			}
+		}
+		function murr() {
+			alert('murrrrrr!!')
+		}
+		function oracle() {
+			let answers = ["Бесспорно", "Предрешено", "Никаких сомнений", "Определённо да", "Можешь быть уверен в этом", "Мне кажется — «да»", "Вероятнее всего", "Хорошие перспективы", "Знаки говорят — «да»", "Пока не ясно, попробуй снова", "Спроси позже", "Лучше не рассказывать", "Сейчас нельзя предсказать", "Сконцентрируйся и спроси опять", "Даже не думай", "Мой ответ — «нет»", "По моим данным — «нет»", "Перспективы не очень хорошие", "Весьма сомнительно",]
+			prompt("Задай мне вопрос");
+			alert(answers[Math.floor(Math.random() * answers.length)]);
+		}
+		function gallows() {
+			alert('Добро пожаловать в игру "Виселица"!')
+			alert('Угадай животное')
+			var words = [
+				"кошка",
+				"собака",
+				"хомяк",
+				"корова",
+				"лошадь",
+				"попугай",
+				"игуана",
+				"питон",
+				"канарейка"
+			];
+			var word = words[Math.floor(Math.random() * words.length)];
+			var answer = [];
+			for (var i = 0; i < word.length; i++) {
+				answer[i] = "_";
+			}
+			var letters = word.length;
+			while (letters > 0) {
+				alert(answer.join(" "));
+				var guess = prompt("Угадай букву или нажми отмена");
+				if (guess === null) {
+					break;
+				}
+				else if (guess.length !== 1) {
+					alert("Введи только одну букву!");
+				}
+				else {
+					for (var j = 0; j < word.length; j++) {
+						if (word[j] === guess) {
+							answer[j] = guess;
+							letters--;
+						}
+					}
+				}
+			}
+			if (letters === 0) {
+				alert("Отлично, ты угадал слово " + word);
+			}
+
+		}
+	</script>
+</body>
+
+</html>
